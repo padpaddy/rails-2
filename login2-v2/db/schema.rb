@@ -10,14 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170629070227) do
+ActiveRecord::Schema.define(version: 20170702142838) do
 
   create_table "comments", force: :cascade do |t|
     t.text "content"
     t.integer "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.string "comment_image_file_name"
+    t.string "comment_image_content_type"
+    t.integer "comment_image_file_size"
+    t.datetime "comment_image_updated_at"
     t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.text "description"
+    t.integer "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "img_file_name"
+    t.string "img_content_type"
+    t.integer "img_file_size"
+    t.datetime "img_updated_at"
+    t.index ["post_id"], name: "index_images_on_post_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -25,6 +43,10 @@ ActiveRecord::Schema.define(version: 20170629070227) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "post_image_file_name"
+    t.string "post_image_content_type"
+    t.integer "post_image_file_size"
+    t.datetime "post_image_updated_at"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -35,6 +57,10 @@ ActiveRecord::Schema.define(version: 20170629070227) do
     t.string "password"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "user_image_file_name"
+    t.string "user_image_content_type"
+    t.integer "user_image_file_size"
+    t.datetime "user_image_updated_at"
   end
 
 end

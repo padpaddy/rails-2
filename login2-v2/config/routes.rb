@@ -18,4 +18,7 @@ Rails.application.routes.draw do
 
   post '/' => 'posts#create'
   patch '/posts/:post_id/comments/:id/edit' => 'comments#update'
+
+  patch '/posts/:post_id/edit' => 'posts#update'
+
 end
