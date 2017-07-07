@@ -1,0 +1,21 @@
+
+<div class="wrapper">
+	<div class="container">
+	<h1> Edit Post </h1>
+
+	<% if @post %>
+		<p><%= getUserInfo(@post) + ":..." %></p>
+		<p><%= @post.content %></p>
+	<%end%>
+
+	<%= form_for @post, url: edit_post_path(@post), class: "form-horizontal" do |f| %>
+		<div class="form-group">
+			<label class="control-label">Edit post</label>
+			<%= f.text_area :content, class: "form-control", value: "" %>
+		</div>
+		<div class="action">
+			<%= f.submit class: "btn btn-primary btn-center" %>
+		</div>
+	<% end %>
+	</div>
+</div>

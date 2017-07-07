@@ -1,0 +1,43 @@
+<div class="wrapper">
+	<div class="container">
+		<h1>User info page</h1>
+
+		<div class="well">
+			<h3><strong><%= @user.first_name.capitalize + " " + @user.last_name.capitalize %></strong></h3>
+			<p><strong>email</strong>: <%= @user.email %></p>
+			<p><strong>password</strong>: <%= @user.password %></p>
+			<p><strong>created_at</strong>: <%= @user.created_at %></p>
+			<p><strong>updated_at</strong>: <%= @user.updated_at %></p>
+			<p><strong>Avatar:</strong></p>
+			<% if @user.user_image.exists? %>
+			<%= image_tag @user.user_image.url(:thumb) %>
+			<% else %>
+				<%= "No found any avatar" %>
+			<% end %>
+
+			<p><strong>Picture:</strong></p>
+			<% if @user.images.exists? %>
+				<% @user.images.each do |image| %>
+					<%= image_tag image.img.url(:thumb), class:"user_image"%>
+
+				<% end %>
+			<% else %>
+				<%= "Not found any picture" %>
+				
+			<% end %>
+		</div>
+		<% if not @current_user && @current_user.id != @user.id %>
+			<%= form_for :user, url: user_path(@user), method: :PUT, html: { class: "form_post", multipart: true } do |f|  %>
+			  
+			  <strong>Add image (Ctrl + Click for more images):</strong> 
+
+			  <%= file_field_tag "images[]", type: :file, multiple: true%> <br>
+
+			  <%= f.submit class:"btn btn-primary", value:"Add image to account"%>
+
+			<% end %>
+		<% end %>
+		<br>
+		<%= link_to "<< Return to posts page", posts_path %>
+	</div>
+</div>
