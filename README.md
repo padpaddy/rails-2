@@ -9,7 +9,6 @@
     - validates_email_format_of
   - Model use: (Created order)
     - User
-    - Session
     - Post
     - Comment
     - Image
