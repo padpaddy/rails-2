@@ -1,0 +1,217 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.user-info {
+	.dropdown {
+		img {
+			width:30px; 
+			border-radius: 100%;
+			padding:2px;
+			margin-top: -3px;
+			border: 1px solid black;
+		}
+	}
+}
+.media {
+	.media-left {
+		margin-top: 20px;
+	}
+	.media-body {
+		.media-heading {
+			font-size: 24px;
+		}
+		p {
+			font-size: 13px;
+		}
+		.media-meta {
+			font-size: 10px;
+		}
+		.post_image {
+			img {
+				padding: 5px;
+				border: 1px solid grey;
+				margin-left: 30px;
+				&:hover {
+					
+				}
+			}
+
+		}
+		.custom_modal .modal-dialog .modal-content img {
+			padding: 3px;
+			margin-left: -20px;
+		}
+	}
+	margin: 40px auto;
+	padding: 10px 5px 0px 10px;
+}
+
+.media:first-child {
+	margin-top: 60px;
+}
+
+.action {
+  text-align: center;
+}
+
+.alert-green {
+  color: green;
+}
+
+.alert-green {
+  color: red;
+}
+.block {
+	display: inline;
+}
+.border {
+	border: 1px solid black;
+
+}
+.user-info {
+	padding: 10px 20px;
+}
+.media {
+	
+}
+.center {
+	margin: 0 auto;
+}
+.middle {
+}
+textarea {
+	width: 100%;
+	height: 100px;
+	margin-bottom: 10px;
+}
+.form_post {
+	padding-bottom: 20px;
+}
+p {
+	line-height: 20px;
+}
+p::first-letter {
+	text-transform: uppercase;
+}
+.user-info {
+	height: 47px;
+}
+.biggerdiv {
+	//width: 500px;
+	margin-left: -18px;
+	margin-right: -18px;
+	margin-top: 20px !important;
+}
+
+#post .container, #comment .container {
+	background-color: white;
+	border: 1px solid #eeeeee;
+}
+#comment, #post {
+	background-color: #eeeeee;
+}
+.alert {
+	margin-top: 20px;
+}
+
+.custom_btn {
+	border-radius: 5px;
+	font-size: 16px;
+	width: 110px !important;
+	height: 30px !important;
+	display: table-cell; 
+	vertical-align: middle;
+}
+.pull-right {
+	//margin: 0px 0px 60px 0px;
+	margin-bottom: 20px;
+}
+.glyp {
+	padding-right: 10px;
+}
+.middle {
+	padding: 40px 0px;
+}
+.wrapper {
+	background-color: #eeeeee;
+	.container {
+		background-color: white;
+	}
+}
+.mid .middle .media {
+	margin-top: 40px;
+}
+
+
+@media screen and (min-width: 700px) {
+	.wrapper .container {
+		width: 550px;
+
+	}
+}
+
+@media screen and (min-width: 500px) {
+	.mid .middle {
+		width: 500px;
+		margin: 0 auto;
+		padding: 40px 20px;
+	}
+}
+
+@media screen and (min-width: 300px) {
+	.media {
+		.media-body {
+			.post_image {
+				img {
+
+					margin-left: 10px;
+				}
+
+			}
+		}
+	}
+
+}
+
+
+@media screen and (max-width: 500px) {
+	.media {
+		.media-body {
+			.post_image {
+				img {
+
+					margin-left: 10px;
+				}
+
+			}
+		}
+	}
+
+	.mid .middle {
+		padding: 40px 20px;
+	}
+	
+	img {
+		width: 93%;
+	}
+}
+
+#button_comment {
+	text-align: right;
+}

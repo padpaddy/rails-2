@@ -1,0 +1,105 @@
+
+<div class="wrapper">
+<div class="container custom_container" >
+	<div class="row">
+		<div class="center mid">
+			<div class="user-info border">
+				<p class="block"></p>
+				<div class="dropdown pull-right">
+				  <img src="<%= asset_path( 'user-image.png' ) %>" alt=""  class="img img-rounded img-responsive dropdown-toggle" type="" data-toggle="dropdown">
+				  <ul class="dropdown-menu">
+				    <li><%= link_to("<span class='glyphicon glyphicon-log-in glyp'></span>Log in".html_safe, login_path) %>
+				    </li>
+				    <li><%= link_to("<span class='glyphicon glyphicon-log-out glyp'></span>Log out".html_safe, logout_path) %></li>
+				    <li><%= link_to("<span class='glyphicon glyphicon-plus glyp'></span>Sign up".html_safe, users_sign_up_path) %></li>
+				    <li><%= link_to("<span class='glyphicon glyphicon-picture glyp'></span>Set image".html_safe,users_sign_up_path) %></li>
+				  </ul>
+				</div> 
+			</div>
+
+			<div class="middle">
+				<% flash.each do |key, value| %>
+					<div class="alert alert-info"><%= value %></div>
+				<% end %>
+
+				<% if @current_user %>
+					<%= form_for @post, html: { class: "form_post", multipart: true } do |f|  %>
+					  <%= f.text_area :content, placeholder: "Add content..." , style:"border:1px solid black;"%><br />
+					  <strong>Add image (Ctrl + Click for more images):</strong> 
+
+					  <%= file_field_tag "images[]", type: :file, multiple: true%> <br>
+
+					  <%= f.submit class:"btn btn-default button-right border pull-right custom_btn", value:"Post"%>
+					<% end %>
+
+				<% end %>
+				
+				<% $cnt_picture = 0 %> 					<!-- Controll picture -->
+
+				<%if @posts %>
+					<% @posts.each do |post| %>
+
+						<div class="media border">
+							<div class="media-left">
+								<img src="<%= asset_path( 'user-image.png' ) %>" class="media-object" style="width:25px">
+							</div>
+							<div class="media-body">
+								<div class="dropdown pull-right">
+								  <img src="<%= asset_path( 'list-item.png' ) %>" alt=""  class="img img-responsive dropdown-toggle" type="" data-toggle="dropdown">
+								  <ul class="dropdown-menu">
+								    <li><%= link_to '<span class="glyphicon glyphicon-comment glyp"></span>Comment this post'.html_safe, post_comments_path(post) %></li>
+								    <li><%= link_to '<span class="glyphicon glyphicon-edit glyp"></span>Edit this post'.html_safe, edit_post_path(post) %></li>
+								    <li><%= link_to '<span class="glyphicon glyphicon-remove-sign glyp"></span>Delete this post'.html_safe, post, :method => :delete, :confirm => "You sure?",
+                                :title => "Delete #{post.content}"%></li>
+								  </ul>
+								</div>
+
+								<h4 class="media-heading"><%= getUserInfo(post) %></h4>
+								<p class="media-meta"><%= getTimeLeft(post.created_at) %></p>
+								<p><%= post.content %></p>
+								<% if post.images.present? %>
+									<% post.images.each do |img| %>
+										
+										<% $target = "#myModal" + $cnt_picture.to_s %>
+										<% $target2 = "myModal" + $cnt_picture.to_s %>
+
+										<p class="post_image"><%= image_tag img.img.url(:medium), :class=>"btn btn-default btn-lg", "data-toggle":"modal", "data-target": $target %></p>
+								        <!-- Trigger the modal with a button -->
+
+										<!-- Modal -->
+										<div id=<%=$target2%> class="modal fade custom_modal" role="dialog">
+										  <div class="modal-dialog">
+
+										    <!-- Modal content-->
+										    <div class="modal-content">
+										      <div class="modal-header">
+										        <button type="button" class="close" data-dismiss="modal">&times;</button>
+										        <h4 class="modal-title"><%= $target2 %></h4>
+										      </div>
+										      <div class="modal-body">
+										        <%= image_tag img.img.url(:large) %>
+										      </div>
+										      <div class="modal-footer">
+										        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+										      </div>
+										    </div>
+
+										  </div>
+										</div>
+
+										<% $cnt_picture += 1 %>
+
+									<% end %>
+								<% end %>
+							</div>
+						</div>
+					<%end%>
+				<% else %>
+					<p>Not found any post!</p>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>

@@ -1,0 +1,21 @@
+
+<div class="wrapper">
+	<div class="container">
+	<h1> Edit Comment </h1>
+
+	<% if @comment %>
+		<p><%= getUserInfo(@comment) + " comment:..." %></p>
+		<p><%= @comment.content %></p>
+	<%end%>
+
+	<%= form_for @comment, url: edit_post_comment_path(@comment), class: "form-horizontal" do |f| %>
+		<div class="form-group">
+			<label class="control-label">Edit comment</label>
+			<%= f.text_area :content, class: "form-control", value: ""%>
+		</div>
+		<div class="action">
+			<%= f.submit class: "btn btn-primary btn-center" %>
+		</div>
+	<% end %>
+	</div>
+</div>

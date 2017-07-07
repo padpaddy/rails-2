@@ -1,0 +1,16 @@
+<h1> Show page </h1>
+
+<% if @comment %>
+	<p><%= @comment.id %></p>
+	<p><%= @comment.content %></p>
+<%end%>
+
+<%= form_for :comment, url: edit_post_comment_path(@comment), class: "form-horizontal" do |f| %>
+	<div class="form-group">
+		<label class="control-label">Email</label>
+		<%= f.text_field :content, class: "form-control" %>
+	</div>
+	<div class="action">
+		<%= f.submit class: "btn btn-primary btn-center" %>
+	</div>
+<% end %>
